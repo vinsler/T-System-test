@@ -309,7 +309,7 @@ public class CalculatorTest {
     @Test
     public void evaluate23() {
         //given
-        String input = "10/(5-4+1)";
+        String input = "(())";
         String expectedResult = null;
 
         //run
@@ -319,4 +319,43 @@ public class CalculatorTest {
         Assert.assertEquals(expectedResult, result);
     }
 
+
+    @Test
+    public void evaluate24() {
+        //given
+        String input = "*10+1/2";
+        String expectedResult = null;
+
+        //run
+        String result = calc.evaluate(input);
+
+        //assert
+        Assert.assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void evaluate25() {
+        //given
+        String input = "-10/(3+4/2)";
+        String expectedResult = "-2";
+
+        //run
+        String result = calc.evaluate(input);
+
+        //assert
+        Assert.assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void evaluate26() {
+        //given
+        String input = "(2+(3-1)*5";
+        String expectedResult = null;
+
+        //run
+        String result = calc.evaluate(input);
+
+        //assert
+        Assert.assertEquals(expectedResult, result);
+    }
 }

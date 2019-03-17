@@ -10,9 +10,23 @@ public class Calculator {
      *                  Example: <code>(1 + 38) * 4.5 - 1 / 2.</code>
      * @return string value containing result of evaluation or null if statement is invalid
      */
+
     public String evaluate(String statement) {
-        // TODO: Implement the logic here
-        return "";
+        Validation validation = new Validation(statement); // validate expression
+
+        if (validation.isValidate()){
+            System.out.println("validation is GOOD!!!");
+            Action action = new Action(statement); // if validate then calculate, else null
+
+            return action.actions(); //"1";
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        Calculator calculator = new Calculator();
+
+        System.out.println(calculator.evaluate("(2+(4*3)-5)"));
     }
 
 }
