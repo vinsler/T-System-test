@@ -9,14 +9,13 @@ public class Action {
 
 
     public String actions(){ // result this func return in calculator
-        //System.out.println(expression);
+        System.out.println(expression);
 
-
-        return null;
+        return easyAction(expression);
     }
 
     public String actionBracket(String localExpression) {
-        if (!localExpression.contains("'(")) {
+        if (!localExpression.contains("(")) {
             return easyAction(localExpression); // easyAction
         }
         return result;
@@ -29,7 +28,7 @@ public class Action {
 
         // todo all exp
 
-        return null;
+        return localExpression;
     }
 
     private String subForEasyAction(String deepLocalExpression, String operator) { // sub function
@@ -37,24 +36,41 @@ public class Action {
         int strStart = -5, strEnd = -5; // impossible position
 
         for (int i = position; i < deepLocalExpression.length(); i++) {
-            if ((position - i) > 0) {
-                if (Character.toString(deepLocalExpression.charAt(position - i)).equals(operator)) {
+            if ((position - i) > -1) {
+                String strTemp = Character.toString(deepLocalExpression.charAt(position - i));
+                if (strTemp.equals("*") || strTemp.equals("/") || strTemp.equals("+") || strTemp.equals("-")) {
                     if (strStart == -5) {
                         strStart = position - i;
                     }
                 }
+            } else {
+                if (strStart == -5) {
+                    strStart = 0; // first number of expression
+                }
             }
-            if ((position + 1) < deepLocalExpression.length()) {
-                if (Character.toString(deepLocalExpression.charAt(position + i)).equals(operator)) {
+            if ((position + i) < deepLocalExpression.length()) {
+                String strTemp = Character.toString(deepLocalExpression.charAt(position + i));
+                if (strTemp.equals("*") || strTemp.equals("/") || strTemp.equals("+") || strTemp.equals("-")) {
                     if (strEnd == -5) {
                         strEnd = position + i;
                     }
                 }
+            } else {
+                if (strEnd == -5) {
+                    strEnd = deepLocalExpression.length() - 1;
+                }
             }
         }
-        return operations.mult(
-                Double.parseDouble(deepLocalExpression.substring(strStart, position - 1)),
-                Double.parseDouble(deepLocalExpression.substring(position + 1, strEnd))).toString();
+        if (deepLocalExpression.substring(strStart, position).contains(".") ||
+                deepLocalExpression.substring(position + 1, strEnd + 1).contains(".")) {
+              return operations.mult(
+                      Double.parseDouble(deepLocalExpression.substring(strStart, position)),
+                      Double.parseDouble(deepLocalExpression.substring(position + 1, strEnd + 1))).toString();
+        }
+
+        return Integer.toString(operations.mult(
+                Integer.parseInt(deepLocalExpression.substring(strStart, position)),
+                Integer.parseInt(deepLocalExpression.substring(position + 1, strEnd + 1))));
     }
 
 

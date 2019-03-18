@@ -18,7 +18,7 @@ public class Calculator {
             System.out.println("validation is GOOD!!!");
             Action action = new Action(statement); // if validate then calculate, else null
 
-            return action.actions(); //"1";
+            return action.actions();
         }
         return null;
     }
@@ -26,7 +26,7 @@ public class Calculator {
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
 
-        System.out.println(calculator.evaluate("(2+(4*3)-5)"));
+        System.out.println(calculator.evaluate("2*2.5"));
     }
 
 }

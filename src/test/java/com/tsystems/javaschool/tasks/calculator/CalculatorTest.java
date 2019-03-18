@@ -358,4 +358,18 @@ public class CalculatorTest {
         //assert
         Assert.assertEquals(expectedResult, result);
     }
+
+
+    @Test
+    public void evaluate27() {
+        //given
+        String input = "2*2.5";
+        String expectedResult = "5";
+
+        //run
+        String result = calc.evaluate(input);
+
+        //assert
+        Assert.assertEquals(expectedResult, result);
+    }
 }

@@ -14,6 +14,11 @@ public class Operations implements OperationsINF<Double> {
         return a * b;
     }
 
+    public int mult(int a, int b) {
+        return a * b;
+    }
+
+
     public Double div(Double a, Double b) {
         if (b != 0) {
             return a / b;
