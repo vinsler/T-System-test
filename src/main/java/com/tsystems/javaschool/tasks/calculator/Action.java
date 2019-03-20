@@ -61,16 +61,17 @@ public class Action {
                 }
             }
         }
-        if (deepLocalExpression.substring(strStart, position).contains(".") ||
-                deepLocalExpression.substring(position + 1, strEnd + 1).contains(".")) {
+        String leftSideFromSign = deepLocalExpression.substring(strStart, position);
+        String rightSideFromSign = deepLocalExpression.substring(position + 1, strEnd + 1);
+        if (leftSideFromSign.contains(".") || rightSideFromSign.contains(".")) {
               return operations.mult(
-                      Double.parseDouble(deepLocalExpression.substring(strStart, position)),
-                      Double.parseDouble(deepLocalExpression.substring(position + 1, strEnd + 1))).toString();
+                      Double.parseDouble(leftSideFromSign),
+                      Double.parseDouble(rightSideFromSign)).toString();
         }
 
         return Integer.toString(operations.mult(
-                Integer.parseInt(deepLocalExpression.substring(strStart, position)),
-                Integer.parseInt(deepLocalExpression.substring(position + 1, strEnd + 1))));
+                Integer.parseInt(leftSideFromSign),
+                Integer.parseInt(rightSideFromSign)));
     }
 
 

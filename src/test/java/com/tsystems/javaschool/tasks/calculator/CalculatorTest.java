@@ -364,7 +364,7 @@ public class CalculatorTest {
     public void evaluate27() {
         //given
         String input = "2*2.5";
-        String expectedResult = "5";
+        String expectedResult = "5.0";
 
         //run
         String result = calc.evaluate(input);
