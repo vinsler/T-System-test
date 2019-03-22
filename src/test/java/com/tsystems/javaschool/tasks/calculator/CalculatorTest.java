@@ -372,4 +372,56 @@ public class CalculatorTest {
         //assert
         Assert.assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void evaluate28() {
+        //given
+        String input = "2*2*2";
+        String expectedResult = "8";
+
+        //run
+        String result = calc.evaluate(input);
+
+        //assert
+        Assert.assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void evaluate29() {
+        //given
+        String input = "2*2.5*2";
+        String expectedResult = "10.0";
+
+        //run
+        String result = calc.evaluate(input);
+
+        //assert
+        Assert.assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void evaluate30() {
+        //given
+        String input = "-2*(-2.5)*(-2)";
+        String expectedResult = "-10.0";
+
+        //run
+        String result = calc.evaluate(input);
+
+        //assert
+        Assert.assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void evaluate31() {
+        //given
+        String input = "-2*-2.5*-2";
+        String expectedResult = null;
+
+        //run
+        String result = calc.evaluate(input);
+
+        //assert
+        Assert.assertEquals(expectedResult, result);
+    }
 }
