@@ -20,7 +20,20 @@ public class Validation {
                 || expression.contains("//")
                 || expression.contains("++")
                 || expression.contains("--")
-                || expression.contains("..")) {
+                || expression.contains("*/")
+                || expression.contains("*+")
+                || expression.contains("*-")
+                || expression.contains("/*")
+                || expression.contains("/+")
+                || expression.contains("/-")
+                || expression.contains("+*")
+                || expression.contains("+/")
+                || expression.contains("+-")
+                || expression.contains("-*")
+                || expression.contains("-/")
+                || expression.contains("-+")
+                || expression.contains("..")
+        ) {
             return false;
         }
 

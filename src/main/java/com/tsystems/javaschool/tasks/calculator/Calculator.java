@@ -26,7 +26,7 @@ public class Calculator {
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
 
-        System.out.println(calculator.evaluate("2*2.5"));
+        System.out.println(calculator.evaluate("4/2*2"));
     }
 
 }
