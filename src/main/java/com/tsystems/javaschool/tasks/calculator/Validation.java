@@ -14,6 +14,10 @@ public class Validation {
             return false;
         }
 
+        if (expression.contains("(")) {
+
+        }
+
         if (expression.contains(",")
                 || expression.contains(" ")
                 || expression.contains("**")
@@ -22,10 +26,10 @@ public class Validation {
                 || expression.contains("--")
                 || expression.contains("*/")
                 || expression.contains("*+")
-                || expression.contains("*-")
+//                || expression.contains("*-")
                 || expression.contains("/*")
                 || expression.contains("/+")
-                || expression.contains("/-")
+//                || expression.contains("/-")
                 || expression.contains("+*")
                 || expression.contains("+/")
                 || expression.contains("+-")

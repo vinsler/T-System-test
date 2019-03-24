@@ -4,13 +4,10 @@ package com.tsystems.javaschool.tasks.calculator;
 public class Action {
     private static Operations operations = new Operations();
     private static String expression; // validate exp for actions
-    private static String result; // result to return, really need?
-
-
+    private static String result;
 
     public String actions(){ // result this func return in calculator
         System.out.println(expression);
-
         return easyAction(expression);
     }
 
@@ -22,28 +19,32 @@ public class Action {
     }
 
     public String easyAction(String localExpression) {
-        while (localExpression.contains("*")) {
-            localExpression = subForEasyAction(localExpression, "*");
-        }
-        while (localExpression.contains("/")) {
-            localExpression = subForEasyAction(localExpression, "/");
-        }
-        while (localExpression.contains("+")) {
-            if (localExpression.lastIndexOf('+') == 0) {
-                localExpression = localExpression.substring(1, localExpression.length());
-                break;
+        for (int i = 0; i < localExpression.length(); i++) {
+            if (localExpression.charAt(i) == '*') {
+                localExpression = subForEasyAction(localExpression, "*");
+                i = 0;
             }
-            localExpression = subForEasyAction(localExpression, "+");
-        }
-        while (localExpression.contains("-")) {
-            if (localExpression.lastIndexOf('-') == 0) {
-                break;
+            if (localExpression.charAt(i) == '/') {
+                localExpression = subForEasyAction(localExpression, "/");
+                i = 0;
             }
-            localExpression = subForEasyAction(localExpression, "-");
+            if (localExpression == null) {
+                return null;
+            }
         }
-
-        // todo all exp from left to right
-
+        for (int i = 0; i < localExpression.length(); i++) {
+            if (localExpression.charAt(i) == '+') {
+                localExpression = subForEasyAction(localExpression, "+");
+                i = 0;
+            }
+            if (localExpression.charAt(i) == '-') {
+                localExpression = subForEasyAction(localExpression, "-");
+                i = 0;
+            }
+            if (localExpression == null) {
+                return null;
+            }
+        }
         return localExpression;
     }
 
@@ -93,6 +94,9 @@ public class Action {
             result = checkMinusResult(leftSideFromSign, result);
         }
 
+        if (result == null) {
+            return null;
+        }
         return deepLocalExpression.substring(0, strStart)
                 + result
                 + deepLocalExpression.substring(strEnd, deepLocalExpression.length());
@@ -102,9 +106,8 @@ public class Action {
         if (leftSideFromSign.charAt(0) == '-') {
             if (result.charAt(0) == '-') {
                 return result = '-' + result;
-            } else {
-                return result = '+' + result;
             }
+            return result;
         }
         return result;
     }
@@ -120,6 +123,15 @@ public class Action {
                 }
                 case "/": {
                     try {
+                        if (Integer.parseInt(rightSideFromSign) == 0) {
+                            return null;
+                        }
+                        if (Integer.parseInt(leftSideFromSign) % Integer.parseInt(rightSideFromSign) != 0) {
+                            result = operations.div(
+                                    Double.parseDouble(leftSideFromSign),
+                                    Double.parseDouble(rightSideFromSign)).toString();
+                            break;
+                        }
                         result = Integer.toString(operations.div(
                                 Integer.parseInt(leftSideFromSign),
                                 Integer.parseInt(rightSideFromSign)));
@@ -170,7 +182,6 @@ public class Action {
         }
         return result;
     }
-
 
     public Action(String expression) {
         this.expression = expression;

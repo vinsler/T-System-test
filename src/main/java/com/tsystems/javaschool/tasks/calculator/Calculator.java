@@ -15,18 +15,19 @@ public class Calculator {
         Validation validation = new Validation(statement); // validate expression
 
         if (validation.isValidate()){
-            System.out.println("validation is GOOD!!!");
+            System.out.println("Access granted!");
             Action action = new Action(statement); // if validate then calculate, else null
 
             return action.actions();
         }
+        System.out.println("Access denied!");
         return null;
     }
 
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
 
-        System.out.println(calculator.evaluate("4/2*2"));
+        System.out.println(calculator.evaluate("5+41/0"));
     }
 
 }
