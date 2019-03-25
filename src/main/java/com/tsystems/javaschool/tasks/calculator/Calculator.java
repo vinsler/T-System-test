@@ -27,7 +27,7 @@ public class Calculator {
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
 
-        System.out.println(calculator.evaluate("5+41/0"));
+        System.out.println(calculator.evaluate("10/2-7+3*4")); // 10/(2-7+3)*4
     }
 
 }

@@ -8,13 +8,23 @@ public class Action {
 
     public String actions(){ // result this func return in calculator
         System.out.println(expression);
-        return easyAction(expression);
+        return undoParantheses(expression);
     }
 
     public String undoParantheses(String localExpression) {
         while (localExpression.contains("(")) {
+            String inParantheses = easyAction(localExpression.substring(
+                    localExpression.lastIndexOf("(") + 1,
+                    localExpression.lastIndexOf(")")));
+            String leftFromParenteses = localExpression.substring(0, localExpression.lastIndexOf("("));
+            String rightFromParentheses = localExpression.substring(
+                    localExpression.lastIndexOf(")") + 1,
+                    localExpression.length());
+
+            localExpression =leftFromParenteses + inParantheses + rightFromParentheses;
             //todo search "(" do substring between ")" do easyAction return result in string without Parantheses
         }
+        localExpression = easyAction(localExpression);
         return localExpression;
     }
 
@@ -38,8 +48,10 @@ public class Action {
                 i = 0;
             }
             if (localExpression.charAt(i) == '-') {
-                localExpression = subForEasyAction(localExpression, "-");
-                i = 0;
+                if (localExpression.indexOf('-') > 0) { // if not first sign example: -5+3
+                    localExpression = subForEasyAction(localExpression, "-");
+                    i = 0;
+                }
             }
             if (localExpression == null) {
                 return null;
@@ -48,12 +60,12 @@ public class Action {
         return localExpression;
     }
 
-    private String subForEasyAction(String deepLocalExpression, String operator) { // sub function
+    private String subForEasyAction(String deepLocalExpression, String operator) { // 10/-2*4
         int position = deepLocalExpression.indexOf(operator);
         int strStart = -5, strEnd = -5; // impossible position
 
         for (int i = 1; i < deepLocalExpression.length(); i++) {
-            if ((position - i) > -1) {
+            if ((position - i) > -1) { // it's not first number in expression
                 String strTemp = Character.toString(deepLocalExpression.charAt(position - i));
                 if (strTemp.equals("*") || strTemp.equals("/") || strTemp.equals("+") || strTemp.equals("-")) {
                     if (strStart == -5) {
@@ -71,7 +83,14 @@ public class Action {
             }
             if ((position + i) < deepLocalExpression.length()) {
                 String strTemp = Character.toString(deepLocalExpression.charAt(position + i));
-                if (strTemp.equals("*") || strTemp.equals("/") || strTemp.equals("+") || strTemp.equals("-")) {
+                if (strTemp.equals("*") || strTemp.equals("/") || strTemp.equals("+") || strTemp.equals("-") ) { // todo /- etc !! 10/-2 equals first num + sign -
+                    if (strTemp.equals("-") && (
+                            (Character.toString(deepLocalExpression.charAt(position)).equals("/")) ||
+                    (Character.toString(deepLocalExpression.charAt(position)).equals("*")) ||
+                    (Character.toString(deepLocalExpression.charAt(position)).equals("+")) ||
+                    (Character.toString(deepLocalExpression.charAt(position)).equals("-")))) {
+                        continue;
+                    }
                     if (strEnd == -5) {
                         strEnd = position + i;
                     }
@@ -88,10 +107,10 @@ public class Action {
 
         if (leftSideFromSign.contains(".") || rightSideFromSign.contains(".")) {
             result = doResult(leftSideFromSign, rightSideFromSign, 1, operator);
-            result = checkMinusResult(leftSideFromSign, result);
+            //result = checkMinusResult(leftSideFromSign, result);
         } else {
             result = doResult(leftSideFromSign, rightSideFromSign, 0, operator);
-            result = checkMinusResult(leftSideFromSign, result);
+            //result = checkMinusResult(leftSideFromSign, result);
         }
 
         if (result == null) {
@@ -102,15 +121,15 @@ public class Action {
                 + deepLocalExpression.substring(strEnd, deepLocalExpression.length());
     }
 
-    private String checkMinusResult(String leftSideFromSign, String result){
-        if (leftSideFromSign.charAt(0) == '-') {
-            if (result.charAt(0) == '-') {
-                return result = '-' + result;
-            }
-            return result;
-        }
-        return result;
-    }
+//    private String checkMinusResult(String leftSideFromSign, String result){
+//        if (leftSideFromSign.charAt(0) == '-') {
+//            if (result.charAt(0) == '-') {
+//                return result = '-' + result;
+//            }
+//            return result;
+//        }
+//        return result;
+//    }
 
     private String doResult(String leftSideFromSign, String rightSideFromSign, int intOrDbl, String operator){
         if (intOrDbl == 0) {
@@ -187,3 +206,4 @@ public class Action {
         this.expression = expression;
     }
 }
+

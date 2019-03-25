@@ -415,8 +415,8 @@ public class CalculatorTest {
     @Test
     public void evaluate31() {
         //given
-        String input = "-2*-2.5*-2";
-        String expectedResult = null;
+        String input = "-10/-2.5*2";
+        String expectedResult = "8.0";
 
         //run
         String result = calc.evaluate(input);
