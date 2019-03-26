@@ -1,6 +1,5 @@
 package com.tsystems.javaschool.tasks.calculator;
 
-
 public class Action {
     private static Operations operations = new Operations();
     private static String expression; // validate exp for actions
@@ -16,13 +15,15 @@ public class Action {
             String inParantheses = easyAction(localExpression.substring(
                     localExpression.lastIndexOf("(") + 1,
                     localExpression.lastIndexOf(")")));
+            if (inParantheses == null) {
+                return null;
+            }
             String leftFromParenteses = localExpression.substring(0, localExpression.lastIndexOf("("));
             String rightFromParentheses = localExpression.substring(
                     localExpression.lastIndexOf(")") + 1,
                     localExpression.length());
 
             localExpression =leftFromParenteses + inParantheses + rightFromParentheses;
-            //todo search "(" do substring between ")" do easyAction return result in string without Parantheses
         }
         localExpression = easyAction(localExpression);
         return localExpression;
@@ -83,12 +84,12 @@ public class Action {
             }
             if ((position + i) < deepLocalExpression.length()) {
                 String strTemp = Character.toString(deepLocalExpression.charAt(position + i));
-                if (strTemp.equals("*") || strTemp.equals("/") || strTemp.equals("+") || strTemp.equals("-") ) { // todo /- etc !! 10/-2 equals first num + sign -
+                if (strTemp.equals("*") || strTemp.equals("/") || strTemp.equals("+") || strTemp.equals("-") ) {
                     if (strTemp.equals("-") && (
-                            (Character.toString(deepLocalExpression.charAt(position)).equals("/")) ||
-                    (Character.toString(deepLocalExpression.charAt(position)).equals("*")) ||
-                    (Character.toString(deepLocalExpression.charAt(position)).equals("+")) ||
-                    (Character.toString(deepLocalExpression.charAt(position)).equals("-")))) {
+                            (Character.toString(deepLocalExpression.charAt(position + i - 1)).equals("/")) ||
+                    (Character.toString(deepLocalExpression.charAt(position + i - 1)).equals("*")) ||
+                    (Character.toString(deepLocalExpression.charAt(position + i - 1)).equals("+")) ||
+                    (Character.toString(deepLocalExpression.charAt(position + i - 1)).equals("-")))) {
                         continue;
                     }
                     if (strEnd == -5) {
@@ -107,10 +108,8 @@ public class Action {
 
         if (leftSideFromSign.contains(".") || rightSideFromSign.contains(".")) {
             result = doResult(leftSideFromSign, rightSideFromSign, 1, operator);
-            //result = checkMinusResult(leftSideFromSign, result);
         } else {
             result = doResult(leftSideFromSign, rightSideFromSign, 0, operator);
-            //result = checkMinusResult(leftSideFromSign, result);
         }
 
         if (result == null) {
@@ -120,16 +119,6 @@ public class Action {
                 + result
                 + deepLocalExpression.substring(strEnd, deepLocalExpression.length());
     }
-
-//    private String checkMinusResult(String leftSideFromSign, String result){
-//        if (leftSideFromSign.charAt(0) == '-') {
-//            if (result.charAt(0) == '-') {
-//                return result = '-' + result;
-//            }
-//            return result;
-//        }
-//        return result;
-//    }
 
     private String doResult(String leftSideFromSign, String rightSideFromSign, int intOrDbl, String operator){
         if (intOrDbl == 0) {
