@@ -18,7 +18,6 @@ public class Operations implements OperationsINF<Double> {
         return a - b;
     }
 
-
     public Double mult(Double a, Double b) {
         return a * b;
     }
@@ -26,7 +25,6 @@ public class Operations implements OperationsINF<Double> {
     public int mult(int a, int b) {
         return a * b;
     }
-
 
     public Double div(Double a, Double b) {
         if (b != 0) {

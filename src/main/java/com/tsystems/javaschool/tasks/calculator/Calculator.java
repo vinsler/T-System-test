@@ -12,12 +12,10 @@ public class Calculator {
      */
 
     public String evaluate(String statement) {
-        Validation validation = new Validation(statement); // validate expression
-
-        if (validation.isValidate()){
+        Validation validation = new Validation(statement); // init validate expression
+        if (validation.isValidate()) {
             System.out.println("Access granted!");
             Action action = new Action(statement); // if validate then calculate, else null
-
             return action.actions();
         }
         System.out.println("Access denied!");
@@ -26,8 +24,6 @@ public class Calculator {
 
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
-
-        System.out.println(calculator.evaluate("-10/(3+4/2)")); // 10/(2-7+3)*4
+        System.out.println(calculator.evaluate("-10/(3+4/2)"));
     }
-
 }

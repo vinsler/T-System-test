@@ -5,7 +5,7 @@ public class Action {
     private static String expression; // validate exp for actions
     private static String result;
 
-    public String actions(){ // result this func return in calculator
+    public String actions() { // result this func return in calculator
         System.out.println(expression);
         return undoParantheses(expression);
     }
@@ -23,7 +23,7 @@ public class Action {
                     localExpression.lastIndexOf(")") + 1,
                     localExpression.length());
 
-            localExpression =leftFromParenteses + inParantheses + rightFromParentheses;
+            localExpression = leftFromParenteses + inParantheses + rightFromParentheses;
         }
         localExpression = easyAction(localExpression);
         return localExpression;
@@ -84,12 +84,12 @@ public class Action {
             }
             if ((position + i) < deepLocalExpression.length()) {
                 String strTemp = Character.toString(deepLocalExpression.charAt(position + i));
-                if (strTemp.equals("*") || strTemp.equals("/") || strTemp.equals("+") || strTemp.equals("-") ) {
+                if (strTemp.equals("*") || strTemp.equals("/") || strTemp.equals("+") || strTemp.equals("-")) {
                     if (strTemp.equals("-") && (
                             (Character.toString(deepLocalExpression.charAt(position + i - 1)).equals("/")) ||
-                    (Character.toString(deepLocalExpression.charAt(position + i - 1)).equals("*")) ||
-                    (Character.toString(deepLocalExpression.charAt(position + i - 1)).equals("+")) ||
-                    (Character.toString(deepLocalExpression.charAt(position + i - 1)).equals("-")))) {
+                                    (Character.toString(deepLocalExpression.charAt(position + i - 1)).equals("*")) ||
+                                    (Character.toString(deepLocalExpression.charAt(position + i - 1)).equals("+")) ||
+                                    (Character.toString(deepLocalExpression.charAt(position + i - 1)).equals("-")))) {
                         continue;
                     }
                     if (strEnd == -5) {
@@ -120,7 +120,7 @@ public class Action {
                 + deepLocalExpression.substring(strEnd, deepLocalExpression.length());
     }
 
-    private String doResult(String leftSideFromSign, String rightSideFromSign, int intOrDbl, String operator){
+    private String doResult(String leftSideFromSign, String rightSideFromSign, int intOrDbl, String operator) {
         if (intOrDbl == 0) {
             switch (operator) {
                 case "*": {
@@ -195,4 +195,3 @@ public class Action {
         this.expression = expression;
     }
 }
-
