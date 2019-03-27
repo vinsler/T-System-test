@@ -424,4 +424,30 @@ public class CalculatorTest {
         //assert
         Assert.assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void evaluate32() {
+        //given
+        String input = "-10/(3+4/2+)";
+        String expectedResult = null;
+
+        //run
+        String result = calc.evaluate(input);
+
+        //assert
+        Assert.assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void evaluate33() {
+        //given
+        String input = "-10/(3+4/2)*";
+        String expectedResult = null;
+
+        //run
+        String result = calc.evaluate(input);
+
+        //assert
+        Assert.assertEquals(expectedResult, result);
+    }
 }
