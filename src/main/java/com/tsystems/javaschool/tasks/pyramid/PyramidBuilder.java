@@ -1,5 +1,8 @@
 package com.tsystems.javaschool.tasks.pyramid;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class PyramidBuilder {
@@ -13,9 +16,22 @@ public class PyramidBuilder {
      * @throws {@link CannotBuildPyramidException} if the pyramid cannot be build with given input
      */
     public int[][] buildPyramid(List<Integer> inputNumbers) {
-        // TODO : Implement your solution here
-        return new int[0][0];
+        Validation validation = new Validation(inputNumbers);
+        PyramidDraw pyramidDraw = new PyramidDraw(inputNumbers);
+
+        if (validation.isValidate()) {
+            System.out.println("validation ok!");
+            return pyramidDraw.draw();
+        } else {
+            System.out.println("validation fail");
+        }
+
+        return null;
     }
 
+    public static void main(String[] args) {
+        PyramidBuilder pyramidBuilder = new PyramidBuilder();
+        pyramidBuilder.buildPyramid(Arrays.asList(1, 3, 6, 9, 4, 5));
+    }
 
 }
