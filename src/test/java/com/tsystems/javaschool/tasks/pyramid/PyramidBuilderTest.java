@@ -150,6 +150,7 @@ public class PyramidBuilderTest {
         // assert (exception)
     }
 
+
     @Test(expected = CannotBuildPyramidException.class)
     public void buildPyramid8() {
         // given

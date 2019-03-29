@@ -13,6 +13,20 @@ public class Validation {
             return false;
         }
 
+        int validateNumeral = 1; // validate pyramid rows by tree
+            for (int i = 1; i <= inputNumbers.size(); i++) {
+                validateNumeral += i + 1;
+                if (inputNumbers.size() > 2147483639) {
+                    return false;
+                }
+                if (validateNumeral >= inputNumbers.size()) {
+                    if (validateNumeral == inputNumbers.size()) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
         return true;
     }
 
@@ -21,8 +35,6 @@ public class Validation {
             validate = true;
         }
     }
-
-
 
     public boolean isValidate() {
         return validate;

@@ -1,8 +1,6 @@
 package com.tsystems.javaschool.tasks.pyramid;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class PyramidBuilder {
@@ -24,14 +22,14 @@ public class PyramidBuilder {
             return pyramidDraw.draw();
         } else {
             System.out.println("validation fail");
+            throw new CannotBuildPyramidException();
         }
 
-        return null;
     }
 
     public static void main(String[] args) {
         PyramidBuilder pyramidBuilder = new PyramidBuilder();
-        pyramidBuilder.buildPyramid(Arrays.asList(1, 3, 6, 9, 4, 5));
+        pyramidBuilder.buildPyramid(Arrays.asList(1, 3, 6, 4, 5, 7));
     }
 
 }
