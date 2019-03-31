@@ -15,21 +15,24 @@ public class PyramidBuilder {
      */
     public int[][] buildPyramid(List<Integer> inputNumbers) {
         Validation validation = new Validation(inputNumbers);
-        PyramidDraw pyramidDraw = new PyramidDraw(inputNumbers);
+
 
         if (validation.isValidate()) {
             System.out.println("validation ok!");
+            PyramidDraw pyramidDraw = new PyramidDraw(inputNumbers, validation.getCountRows());
+
             return pyramidDraw.draw();
         } else {
-            System.out.println("validation fail");
-            throw new CannotBuildPyramidException();
+            CannotBuildPyramidException cannotBuildPyramidException = new CannotBuildPyramidException();
+            cannotBuildPyramidException.listDontValidate();
+            throw cannotBuildPyramidException;
         }
 
     }
 
     public static void main(String[] args) {
         PyramidBuilder pyramidBuilder = new PyramidBuilder();
-        pyramidBuilder.buildPyramid(Arrays.asList(1, 3, 6, 4, 5, 7));
+        pyramidBuilder.buildPyramid(Arrays.asList(1, 2,3, 4,5,6, 7,8,9,10, 11,12,13,14,15));
     }
 
 }
