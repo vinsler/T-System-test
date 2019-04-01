@@ -4,7 +4,7 @@ import java.util.List;
 
 public class PyramidDraw {
     private static List<Integer> inputNumbers;
-    private static int countRows;
+    private int countRows;
 
     public PyramidDraw(List<Integer> inputNumbers, int countRows){
         this.inputNumbers = inputNumbers;
@@ -13,27 +13,35 @@ public class PyramidDraw {
 
     public int[][] draw(){
         int printZero = 0;
-        int printArray [][] = new int[countRows][inputNumbers.size()];
+        int printArray [][] = new int[countRows][(countRows * 2) - 1];
 
-        System.out.println(countRows);
-
+        int countPositionArray = 0;
+        int nowPositionRows = 1;
         for (int i = 0; i < countRows; i++) { // go through the rows
             printZero = (countRows * 2 - ((i+1) * 2 - 1)) / 2;
             for (int j = 0; j < (countRows * 2) - 1; j++) { // go through the columns
                 if (printZero != 0) {
                     printArray[i][j] = 0;
-                    System.out.print(printArray[i][j] + " ");
                     printZero--;
                 } else {
-                    printArray[i][j] = inputNumbers.get(i);
+                    printArray[i][j] = inputNumbers.get(countPositionArray);
+                    countPositionArray++; // next Position Array
                     printZero = (countRows * 2 - ((i+1) * 2 - 1)) / 2;
-                    System.out.print(printArray[i][j] + " ");
-                    if (i > 1) { // todo fill array between indent left & right
-
+                    if (i > 0) { // go through internal row
+                        nowPositionRows += 2; // increment the internal row by +2 [ 1 left + 1 right ]
+                        for (int t = 1; t < nowPositionRows; t++) {
+                            if (t % 2 != 0) { // every even zero
+                                j++;
+                                printArray[i][j] = 0;
+                            } else {
+                                j++;
+                                printArray[i][j] = inputNumbers.get(countPositionArray);
+                                countPositionArray++;
+                            }
+                        }
                     }
                 }
             }
-            System.out.println();
         }
         return printArray;
     }

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Validation {
     private boolean validate;
-    private static int countRows;
+    private int countRows;
 
     public boolean checkError(List<Integer> inputNumbers){
         if (inputNumbers.contains(null)){
