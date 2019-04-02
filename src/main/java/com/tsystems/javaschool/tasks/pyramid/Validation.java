@@ -13,7 +13,6 @@ public class Validation {
         if (inputNumbers.isEmpty()) {
             return false;
         }
-
         int validateNumeral = 1; // validate pyramid rows by tree
         countRows++; // if dont empty or null then >= 1;
             for (int i = 1; i <= inputNumbers.size(); i++) {

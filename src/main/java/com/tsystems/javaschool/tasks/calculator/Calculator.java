@@ -14,11 +14,9 @@ public class Calculator {
     public String evaluate(String statement) {
         Validation validation = new Validation(statement); // init validate expression
         if (validation.isValidate()) {
-            System.out.println("Access granted!");
             Action action = new Action(statement); // if validate then calculate, else null
             return action.actions();
         }
-        System.out.println("Access denied!");
         return null;
     }
 

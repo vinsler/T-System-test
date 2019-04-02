@@ -2,10 +2,10 @@ package com.tsystems.javaschool.tasks.calculator;
 
 public class Action {
     private static Operations operations = new Operations();
-    private static String expression; // validate exp for actions
+    private static String expression;
     private static String result;
 
-    public String actions() { // result this func return in calculator
+    public String actions() { // result this function return in calculator
         System.out.println(expression);
         return undoParantheses(expression);
     }

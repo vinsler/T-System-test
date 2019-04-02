@@ -25,18 +25,4 @@ public class PyramidBuilder {
             throw cannotBuildPyramidException;
         }
     }
-
-//    public static void main(String[] args) { // may be useful for checking
-//        PyramidBuilder pyramidBuilder = new PyramidBuilder();
-//        List<Integer> input = Arrays.asList(1, 3, 2, 9, 4, 5);
-//        int[][] intArr = pyramidBuilder.buildPyramid(input);
-//
-//        for (int i = 0; i < intArr.length ; i++) {
-//            System.out.println();
-//            for (int j = 0; j < intArr[1].length; j++){
-//                System.out.print(intArr[i][j]);
-//                System.out.print(" ");
-//            }
-//        }
-//    }
 }
