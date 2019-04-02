@@ -14,7 +14,11 @@ public class Subsequence {
      */
     @SuppressWarnings("rawtypes")
     public boolean find(List x, List y) {
-        // TODO: Implement the logic here
+        Validation validation = new Validation(x, y);
+        if (validation.isValidate()) {
+            Logic logic = new Logic();
+            return logic.actions(x, y);
+        }
         return false;
     }
 }
