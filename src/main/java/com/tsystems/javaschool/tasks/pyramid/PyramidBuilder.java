@@ -12,6 +12,7 @@ public class PyramidBuilder {
      * @return 2d array with pyramid inside
      * @throws {@link CannotBuildPyramidException} if the pyramid cannot be build with given input
      */
+
     public int[][] buildPyramid(List<Integer> inputNumbers) {
         Validation validation = new Validation(inputNumbers);
 

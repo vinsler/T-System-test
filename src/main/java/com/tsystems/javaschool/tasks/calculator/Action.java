@@ -5,7 +5,7 @@ public class Action {
     private static String expression;
     private static String result;
 
-    public String actions() { // result this function return in calculator
+    public String actions() {
         System.out.println(expression);
         return undoParantheses(expression);
     }
